@@ -1,5 +1,7 @@
 # GitHub Release Artifacts
 
+When you upload the files below to a GitHub Release, each file appears as a clickable download asset on the release page. Put the `.dmg` first so it is the primary download option.
+
 For version `0.1.0`, publish these files from `.build/release/`:
 
 | File | Purpose |
