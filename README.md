@@ -26,6 +26,13 @@ cd <repo-root>
 bash scripts/package-saver.sh
 ```
 
+Build the release artifacts:
+
+```bash
+cd <repo-root>
+bash scripts/package-release.sh
+```
+
 安装到系统屏保目录：
 
 ```bash

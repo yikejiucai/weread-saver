@@ -3,10 +3,11 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BUILD_DIR="$ROOT_DIR/.build/saver"
-BUNDLE_NAME="WeReadScreenSaver.saver"
 BINARY_NAME="WeReadScreenSaver"
+BUNDLE_NAME="WeReadScreenSaver.saver"
 BUNDLE_DIR="$BUILD_DIR/$BUNDLE_NAME"
 INSTALL_FLAG="${1:-}"
+source "$ROOT_DIR/scripts/release-config.sh"
 
 mkdir -p "$BUNDLE_DIR/Contents/MacOS" "$BUNDLE_DIR/Contents/Resources"
 
@@ -37,19 +38,19 @@ cat > "$BUNDLE_DIR/Contents/Info.plist" <<'PLIST'
   <key>CFBundleDevelopmentRegion</key>
   <string>en</string>
   <key>CFBundleExecutable</key>
-  <string>WeReadScreenSaver</string>
+  <string>${APP_NAME}</string>
   <key>CFBundleIdentifier</key>
-  <string>com.weread.saver</string>
+  <string>${BUNDLE_IDENTIFIER}</string>
   <key>CFBundleInfoDictionaryVersion</key>
   <string>6.0</string>
   <key>CFBundleName</key>
-  <string>WeReadScreenSaver</string>
+  <string>${APP_NAME}</string>
   <key>CFBundlePackageType</key>
   <string>saver</string>
   <key>CFBundleShortVersionString</key>
-  <string>0.1.0</string>
+  <string>${APP_VERSION}</string>
   <key>CFBundleVersion</key>
-  <string>1</string>
+  <string>${APP_BUILD}</string>
   <key>NSPrincipalClass</key>
   <string>WeReadScreenSaverView</string>
 </dict>
