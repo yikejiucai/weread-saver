@@ -74,18 +74,9 @@ enum ChromeBrowserDirectReader {
         set jsSource to read jsPath as «class utf8»
         tell application "Google Chrome"
             if not (exists front window) then error "Chrome 没有前台窗口"
-            set targetTab to missing value
-            repeat with w in windows
-                repeat with t in tabs of w
-                    set tabURL to URL of t
-                    if tabURL contains "weread.qq.com" then
-                        set targetTab to t
-                        exit repeat
-                    end if
-                end repeat
-                if targetTab is not missing value then exit repeat
-            end repeat
-            if targetTab is missing value then error "请先在 Chrome 打开微信读书网页"
+            set targetTab to active tab of front window
+            set tabURL to URL of targetTab
+            if tabURL does not contain "weread.qq.com" then error "请先切到微信读书网页标签页"
             set resultText to execute javascript jsSource in targetTab
         end tell
         return resultText
