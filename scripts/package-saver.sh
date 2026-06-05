@@ -35,6 +35,8 @@ build_slice() {
     -framework AppKit \
     -framework SwiftUI \
     -framework ScreenSaver \
+    -framework Security \
+    -lsqlite3 \
     -o "$output" \
     "${SWIFT_FILES[@]}"
 }
@@ -75,6 +77,11 @@ cat > "$BUNDLE_DIR/Contents/Info.plist" <<PLIST
 PLIST
 
 cp "$ROOT_DIR/README.md" "$BUNDLE_DIR/Contents/Resources/README.md"
+
+if [[ -x "$ROOT_DIR/scripts/sync-shelf-cache.py" ]]; then
+  python3 "$ROOT_DIR/scripts/sync-shelf-cache.py" \
+    "$BUNDLE_DIR/Contents/Resources/shelf-cache.json" >&2 || true
+fi
 
 echo "$BUNDLE_DIR"
 

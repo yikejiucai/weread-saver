@@ -16,7 +16,11 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "WeReadScreenSaver",
-            path: "Sources/WeReadScreenSaver"
+            path: "Sources/WeReadScreenSaver",
+            linkerSettings: [
+                .linkedFramework("Security"),
+                .linkedLibrary("sqlite3")
+            ]
         )
     ]
 )
