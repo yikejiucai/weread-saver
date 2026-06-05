@@ -6,9 +6,9 @@ For version `0.1.0`, publish these files from `.build/release/`:
 
 | File | Purpose |
 |---|---|
-| `WeReadScreenSaver-0.1.0-arm64.zip` | Direct install archive containing the `.saver` bundle |
-| `WeReadScreenSaver-0.1.0-arm64.dmg` | Disk image installer with the bundle and install note |
-| `WeReadScreenSaver-0.1.0-arm64.sha256` | SHA-256 checksums for both distributable assets |
+| `WeReadScreenSaver-0.1.0-universal.zip` | Direct install archive containing the `.saver` bundle |
+| `WeReadScreenSaver-0.1.0-universal.dmg` | Disk image installer with the bundle and install note |
+| `WeReadScreenSaver-0.1.0-universal.sha256` | SHA-256 checksums for both distributable assets |
 
 Recommended release body:
 
@@ -16,11 +16,11 @@ Recommended release body:
 ## WeReadScreenSaver 0.1.0
 
 ### Download
-- `WeReadScreenSaver-0.1.0-arm64.dmg`
-- `WeReadScreenSaver-0.1.0-arm64.zip`
+- `WeReadScreenSaver-0.1.0-universal.dmg`
+- `WeReadScreenSaver-0.1.0-universal.zip`
 
 ### Verify
-- Compare SHA-256 hashes against `WeReadScreenSaver-0.1.0-arm64.sha256`
+- Compare SHA-256 hashes against `WeReadScreenSaver-0.1.0-universal.sha256`
 
 ### Install
 1. Open the `.dmg` or unzip the archive.

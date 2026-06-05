@@ -6,11 +6,11 @@ source "$ROOT_DIR/scripts/release-config.sh"
 
 RELEASE_DIR="$ROOT_DIR/.build/release"
 SAVER_DIR="$ROOT_DIR/.build/saver/$BUNDLE_NAME"
-ZIP_PATH="$RELEASE_DIR/${APP_NAME}-${APP_VERSION}-${ARM64_TAG}.zip"
-DMG_STAGE_DIR="$RELEASE_DIR/${APP_NAME}-${APP_VERSION}-${ARM64_TAG}-stage"
-DMG_PATH="$RELEASE_DIR/${APP_NAME}-${APP_VERSION}-${ARM64_TAG}.dmg"
-CHECKSUMS_PATH="$RELEASE_DIR/${APP_NAME}-${APP_VERSION}-${ARM64_TAG}.sha256"
-MANIFEST_PATH="$RELEASE_DIR/${APP_NAME}-${APP_VERSION}-${ARM64_TAG}.json"
+ZIP_PATH="$RELEASE_DIR/${APP_NAME}-${APP_VERSION}-${DIST_TAG}.zip"
+DMG_STAGE_DIR="$RELEASE_DIR/${APP_NAME}-${APP_VERSION}-${DIST_TAG}-stage"
+DMG_PATH="$RELEASE_DIR/${APP_NAME}-${APP_VERSION}-${DIST_TAG}.dmg"
+CHECKSUMS_PATH="$RELEASE_DIR/${APP_NAME}-${APP_VERSION}-${DIST_TAG}.sha256"
+MANIFEST_PATH="$RELEASE_DIR/${APP_NAME}-${APP_VERSION}-${DIST_TAG}.json"
 
 mkdir -p "$RELEASE_DIR"
 
@@ -50,19 +50,19 @@ cat > "$MANIFEST_PATH" <<EOF
   "build": "${APP_BUILD}",
   "artifacts": [
     {
-      "name": "${APP_NAME}-${APP_VERSION}-${ARM64_TAG}.zip",
+      "name": "${APP_NAME}-${APP_VERSION}-${DIST_TAG}.zip",
       "type": "zip",
       "purpose": "Direct install bundle",
       "path": "${ZIP_PATH}"
     },
     {
-      "name": "${APP_NAME}-${APP_VERSION}-${ARM64_TAG}.dmg",
+      "name": "${APP_NAME}-${APP_VERSION}-${DIST_TAG}.dmg",
       "type": "dmg",
       "purpose": "Disk image installer",
       "path": "${DMG_PATH}"
     },
     {
-      "name": "${APP_NAME}-${APP_VERSION}-${ARM64_TAG}.sha256",
+      "name": "${APP_NAME}-${APP_VERSION}-${DIST_TAG}.sha256",
       "type": "checksum",
       "purpose": "SHA-256 checksums for release assets",
       "path": "${CHECKSUMS_PATH}"

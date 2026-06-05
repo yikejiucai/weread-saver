@@ -6,6 +6,7 @@ BUILD_DIR="$ROOT_DIR/.build/saver"
 BINARY_NAME="WeReadScreenSaver"
 BUNDLE_NAME="WeReadScreenSaver.saver"
 BUNDLE_DIR="$BUILD_DIR/$BUNDLE_NAME"
+ARCH_BUILD_DIR="$BUILD_DIR/arch"
 INSTALL_FLAG="${1:-}"
 source "$ROOT_DIR/scripts/release-config.sh"
 
@@ -17,18 +18,34 @@ while IFS= read -r -d '' file; do
   SWIFT_FILES+=("$file")
 done < <(find "$ROOT_DIR/Sources/WeReadScreenSaver" -name '*.swift' ! -name 'main.swift' -print0 | sort -z)
 
-xcrun swiftc \
-  -emit-library \
-  -Xlinker -bundle \
-  -parse-as-library \
-  -module-name WeReadScreenSaver \
-  -sdk "$SDK_PATH" \
-  -target arm64-apple-macosx15.0 \
-  -framework AppKit \
-  -framework SwiftUI \
-  -framework ScreenSaver \
-  -o "$BUNDLE_DIR/Contents/MacOS/$BINARY_NAME" \
-  "${SWIFT_FILES[@]}"
+rm -rf "$ARCH_BUILD_DIR"
+mkdir -p "$ARCH_BUILD_DIR"
+
+build_slice() {
+  local target="$1"
+  local output="$2"
+
+  xcrun swiftc \
+    -emit-library \
+    -Xlinker -bundle \
+    -parse-as-library \
+    -module-name WeReadScreenSaver \
+    -sdk "$SDK_PATH" \
+    -target "$target" \
+    -framework AppKit \
+    -framework SwiftUI \
+    -framework ScreenSaver \
+    -o "$output" \
+    "${SWIFT_FILES[@]}"
+}
+
+build_slice "arm64e-apple-macosx15.0" "$ARCH_BUILD_DIR/$BINARY_NAME-arm64e"
+build_slice "x86_64-apple-macosx15.0" "$ARCH_BUILD_DIR/$BINARY_NAME-x86_64"
+
+xcrun lipo -create \
+  "$ARCH_BUILD_DIR/$BINARY_NAME-arm64e" \
+  "$ARCH_BUILD_DIR/$BINARY_NAME-x86_64" \
+  -output "$BUNDLE_DIR/Contents/MacOS/$BINARY_NAME"
 
 cat > "$BUNDLE_DIR/Contents/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
@@ -46,7 +63,7 @@ cat > "$BUNDLE_DIR/Contents/Info.plist" <<PLIST
   <key>CFBundleName</key>
   <string>${APP_NAME}</string>
   <key>CFBundlePackageType</key>
-  <string>saver</string>
+  <string>BNDL</string>
   <key>CFBundleShortVersionString</key>
   <string>${APP_VERSION}</string>
   <key>CFBundleVersion</key>
