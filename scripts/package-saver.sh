@@ -39,7 +39,7 @@ cat > "$BUNDLE_DIR/Contents/Info.plist" <<'PLIST'
   <key>CFBundleExecutable</key>
   <string>WeReadScreenSaver</string>
   <key>CFBundleIdentifier</key>
-  <string>com.taoprojects.WeReadScreenSaver</string>
+  <string>com.weread.saver</string>
   <key>CFBundleInfoDictionaryVersion</key>
   <string>6.0</string>
   <key>CFBundleName</key>

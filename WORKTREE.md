@@ -17,8 +17,8 @@ Use lowercase kebab-case for `<topic>`.
 
 Current setup:
 
-- `main` -> `/Users/tao/Projects/WeReadScreenSaver`
-- `feature/we-read-screen-saver` -> `/Users/tao/Projects/WeReadScreenSaver-dev`
+- `main` -> repo root
+- `feature/we-read-screen-saver` -> sibling worktree directory
 
 ## Suggested Workflow
 

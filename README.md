@@ -15,14 +15,14 @@ macOS 极简封面墙屏保原型。
 > 需要 macOS 和 Swift 工具链。
 
 ```bash
-cd /Users/tao/Projects/WeReadScreenSaver
+cd <repo-root>
 swift run
 ```
 
 ## Build saver bundle
 
 ```bash
-cd /Users/tao/Projects/WeReadScreenSaver
+cd <repo-root>
 bash scripts/package-saver.sh
 ```
 
