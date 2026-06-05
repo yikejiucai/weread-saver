@@ -4,8 +4,14 @@ struct ChromeBrowserShelfProvider: ShelfProviding {
     let fallback: ShelfProviding
 
     func loadShelf() async throws -> ShelfPayload {
-        if let payload = try await ChromeBrowserDirectReader.loadShelfFromChrome() {
-            return payload
+        do {
+            if let payload = try await ChromeBrowserDirectReader.loadShelfFromChrome() {
+                return payload
+            }
+        } catch {
+            // Chrome automation can fail for a normal screen saver preview or when
+            // the browser is not available. Fall back to cached/sample data instead
+            // of leaving the saver empty.
         }
 
         if let payload = ChromeShelfCacheStore().load() {
