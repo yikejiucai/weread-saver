@@ -11,7 +11,7 @@ Use lowercase kebab-case for `<topic>`.
 
 ## Directory Names
 
-- Keep the primary repo at `/Users/tao/Projects/WeReadScreenSaver`
+- Keep the primary repo in the main project directory
 - Keep worktree directories beside it with the suffix `-dev` or `-wt-<topic>`
 - Prefer one worktree per active branch
 
